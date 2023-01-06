@@ -2,15 +2,16 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Entities\Post;
+use App\Transformers\BaseTransformer;
+use League\Fractal\TransformerAbstract;
 
 /**
  * Class PostTransformer.
  *
  * @package namespace App\Transformers;
  */
-class PostTransformer extends TransformerAbstract
+class PostTransformer extends BaseTransformer
 {
     /**
      * Transform the Post entity.
@@ -19,15 +20,8 @@ class PostTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Post $model)
+    public function transform(Post $model): array
     {
-        return [
-            'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
-        ];
+        return $this->addTimesHumanReadable($model, $model->toArray());
     }
 }

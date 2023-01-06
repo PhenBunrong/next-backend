@@ -11,15 +11,15 @@ use Prettus\Repository\Traits\TransformableTrait;
  *
  * @package namespace App\Entities;
  */
-class Post extends Model implements Transformable
+class Post extends Model
 {
-    use TransformableTrait;
+    protected $fillable = [
+        'title',
+        'content',  
+    ];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [];
-
+    protected $casts = [
+        'title' => 'string',
+        'content' => 'string',
+    ];
 }

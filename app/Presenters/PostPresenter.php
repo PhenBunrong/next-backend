@@ -2,22 +2,22 @@
 
 namespace App\Presenters;
 
+use App\Presenters\BasePresenter;
 use App\Transformers\PostTransformer;
+use League\Fractal\TransformerAbstract;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
  * Class PostPresenter.
- *
- * @package namespace App\Presenters;
  */
-class PostPresenter extends FractalPresenter
+class PostPresenter extends BasePresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
-     * @return \League\Fractal\TransformerAbstract
+     * @return BasePresenter|TransformerAbstract
      */
-    public function getTransformer()
+    public function getTransformer(): BasePresenter|TransformerAbstract
     {
         return new PostTransformer();
     }

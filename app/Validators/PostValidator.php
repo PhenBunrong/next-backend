@@ -2,23 +2,23 @@
 
 namespace App\Validators;
 
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use App\Validators\BaseValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
  * Class PostValidator.
- *
- * @package namespace App\Validators;
  */
-class PostValidator extends LaravelValidator
+class PostValidator extends BaseValidator
 {
-    /**
-     * Validation Rules
-     *
-     * @var array
-     */
-    protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
-    ];
+    public function additionalRules(): array
+    {
+        $rules = [
+            'title' => ['required'],
+            'content' => ['required'],
+        ];
+        $this->rules[ValidatorInterface::RULE_CREATE] = $rules;
+        $this->rules[ValidatorInterface::RULE_UPDATE] = $rules;
+
+        return $this->rules;
+    }
 }
